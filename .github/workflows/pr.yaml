@@ -16,8 +16,12 @@ jobs:
           { 'version': '17', 'opts': '' }
         ]
     steps:
+      - uses: actions/checkout@v2
+        name: checkout
+
       - name: Create k8s Kind Cluster
         uses: helm/kind-action@v1.3.0
+
       - name: Install JDK ${{ matrix.java.version }}
         uses: actions/setup-java@v3
         with:
@@ -25,5 +29,6 @@ jobs:
           java-version: ${{ matrix.java.version }}
           check-latest: true
           cache: 'maven'
+          
       - name: Test
         run: ./mvnw verify
