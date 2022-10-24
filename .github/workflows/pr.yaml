@@ -18,11 +18,11 @@ jobs:
     steps:
       - name: Create k8s Kind Cluster
         uses: helm/kind-action@v1.3.0
-      - name: Install JDK ${{matrix.java.version}}
+      - name: Install JDK ${{ matrix.java.version }}
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: ${{ matrix.java }}
+          java-version: ${{ matrix.java.version }}
           check-latest: true
           cache: 'maven'
       - name: Test
